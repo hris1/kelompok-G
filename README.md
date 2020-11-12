@@ -6,4 +6,4 @@
  Hilmi Nur fadilah - 182410103043
 
 ## Aplikasi Tasek
-Tasek adalah aplikasi mobile yang di buat untuk melayani nelayan , yang di dalamnya menyediakan akses terhadap sumber daya kelautan dan pasar bagi nelayan kecil, dengan aplikasi ini di harapkan bagi para nelayan tau kondisi pasar dan harga pasar,maka dariitu paranelayan harus berkonsultsi dengan pengepul mengenai kebutuhan pasar yang akan berpengaruh terhadap harga pasarnya , dan nelayan akan di mudahkan menjual hasil lautnya kepada pengepul terdekat atau sesuai harga pilihannya.
+Tasek adalah Aplikasi ini kami buat untuk artikel dari nelayan , dalam aplikasi ini terdapat kolom komentar untuk user(pengunjung) yang bisa di buat sebagi forum komunikasi publik dalam artikelnya , dengan itu diharapkan orang daerah sekitar nelayan tersebut memahami kondisi nelayan yang bisa menjadi pertimbangan harga jual hasil nelayan atau mempengaruhi harga pasarnya.
