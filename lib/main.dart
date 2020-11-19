@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tasek/home/halaman-depan.dart';
 import 'package:tasek/home/start.dart';
 
 void main() {
