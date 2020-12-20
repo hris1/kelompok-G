@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tasek/home/start.dart';
+import 'package:tasek/layout/UserController.dart';
+import 'package:tasek/layout/changepage.dart';
+import 'package:tasek/layout/detail.dart';
+import 'package:tasek/layout/start.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,22 +12,34 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List data = [];
+  void getUser() async {
+    UserController.getData().then((res) {
+      setState(() {
+        data = res;
+      });
+      print(data.toString());
+    });
+  }
+
+  @override
+  void initState() {
+    getUser();
+    super.initState();
+  }
+
   Widget atas() {
     return AppBar(
       title: Text(
         'TASEK',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20.0,
+        ),
       ),
+      backgroundColor: Colors.cyan,
     );
   }
-
-  var cakalan = [
-    'Cakalan',
-    'Ikan ini menjadi buruan utama di semua nelayan indonesia',
-  ];
-  var hiu = ['Hiu', 'Ikan ini menjadi predator di peselancar '];
-  var paus = ['Paus ', 'Ikan terbesar di dunia yang beratnya ber ton ton '];
-  var show = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +53,8 @@ class _HomeState extends State<Home> {
               accountName: Text('Tasek'),
               accountEmail: Text('tasekapp@gmail.com'),
               currentAccountPicture: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: new Image.asset('img/inka.png')),
+                  backgroundColor: Colors.orange,
+                  child: new Image.asset('img/logo.png')),
             ),
             ListTile(
               leading: FaIcon(FontAwesomeIcons.home),
@@ -62,67 +78,40 @@ class _HomeState extends State<Home> {
             ListTile(
               leading: FaIcon(FontAwesomeIcons.user),
               title: Text('Akun'),
-              onTap: () {
-                //add routes to navigate
-              },
+              onTap: () {},
             ),
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  child: new Image.asset(
-                    'img/nelayan.jpg',
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100.0),
+      body: Container(
+        width: double.infinity,
+        child: ListView.builder(
+          itemCount: data.length,
+          itemBuilder: (context, int i) {
+            return InkWell(
+              onTap: () {
+                ChangePage(
+                    context,
+                    Detail(
+                      data: data[i],
+                    ));
+                // print(data[i].toString());
+              },
+              child: Card(
+                shadowColor: Colors.deepOrange,
+                child: ListTile(
+                  title: Column(
+                    children: [
+                      Text("${data[i]["name"]}"),
+                      Text("${data[i]["email"]}"),
+                      Text("${data[i]["address"]["street"]}"),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-          Padding(padding: EdgeInsets.all(10)),
-          Text('Ikan Cakalan',
-              style: TextStyle(color: Colors.blue, fontSize: 25)),
-          Container(
-            height: 80,
-            child: ListView(
-              children: cakalan.map((e) {
-                return Padding(
-                  child: Text(e),
-                  padding: EdgeInsets.only(top: 5.0, left: 20.0),
-                );
-              }).toList(),
-            ),
-          ),
-          RaisedButton(
-            onPressed: () {},
-            child: Text('View'),
-            color: Colors.cyan,
-          ),
-          Padding(padding: EdgeInsets.all(10)),
-          Text('Ikan Hiu', style: TextStyle(color: Colors.blue, fontSize: 25)),
-          Container(
-            height: 80,
-            child: ListView(
-              children: hiu.map((e) {
-                return Padding(
-                  child: Text(e),
-                  padding: EdgeInsets.only(top: 5.0, left: 20.0),
-                );
-              }).toList(),
-            ),
-          ),
-          RaisedButton(
-            onPressed: () {},
-            child: Text('View'),
-            color: Colors.cyan,
-          ),
-        ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
