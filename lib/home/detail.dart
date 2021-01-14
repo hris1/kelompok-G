@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasek/layout/mapscreen.dart';
 
 class Detail extends StatefulWidget {
   final Map data;
@@ -12,26 +13,57 @@ class _DetailState extends State<Detail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Detail Page"),
+        title: Text("Lebih Lengkap"),
         backgroundColor: Colors.orange,
       ),
       body: Card(
         child: ListTile(
           title: Column(
             children: [
-              Text('Data diri'),
-              Text('${widget.data['name']}'),
-              Text('${widget.data['username']}'),
-              Text('${widget.data['email']}'),
-              Text('${widget.data['phone']}'),
-              Text('${widget.data['website']}'),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'Data diri',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orange[600]),
+                ),
+              ),
+              Text('Nama = ${widget.data['name']}'),
+              SizedBox(height: 10),
+              Text('User Name = ${widget.data['username']}'),
+              SizedBox(height: 10),
+              Text('Email = ${widget.data['email']}'),
+              SizedBox(height: 10),
+              Text('Nomor = ${widget.data['phone']}'),
+              SizedBox(height: 10),
+              Text('Alamat web = ${widget.data['website']}'),
               SizedBox(height: 20),
-              Text('Data Alamat'),
+              Text(
+                'Isi Artikel',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange[600]),
+              ),
               SizedBox(height: 10),
               Text('${widget.data['address']['street']}'),
             ],
           ),
         ),
+      ),
+      floatingActionButton: new FloatingActionButton(
+        child: Icon(Icons.add_location),
+        backgroundColor: Colors.cyan,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => (MapScreen()),
+            ),
+          );
+        },
       ),
     );
   }
